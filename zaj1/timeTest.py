@@ -1,8 +1,8 @@
 import random
 from time import time_ns
-from Tekstowe.zaj1.faAlgorithm import finiteAuto_StringMatching, constructTransMatrix
-from Tekstowe.zaj1.naive import naiveStringMatching
-from Tekstowe.zaj1.KMP import kmp_string_matching, prefix_function
+from zaj1.faAlgorithm import finiteAuto_StringMatching, constructTransMatrix
+from zaj1.naive import naiveStringMatching
+from zaj1.KMP import kmp_string_matching, prefix_function
 from matplotlib import pyplot as plt
 import numpy as np
 
