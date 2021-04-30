@@ -19,7 +19,6 @@ def printOperationsInOnString(D, i, j, str1, str2):
         return ""
 
 
-# def p
 
 NOTHING = 0
 ADD_SIGN = 1
@@ -121,7 +120,8 @@ if __name__ == '__main__':
         D = editDistance(s1, s2)
         print(f"str1: {s1}\nstr2: {s2}")
         opsInString = printOperationsInOnString(D, len(s1), len(s2), s1, s2)
-        print(opsInString)
+        print(f"transformation vis 1:: {opsInString}")
         operations = getOperationList(D, s1, s2)
+        print("transformation vis 2::")
         printOperationsBySteps(operations, s1, s2)
-        print("")
+        print("*" * 35 + "\n")
