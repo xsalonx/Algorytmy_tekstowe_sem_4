@@ -29,8 +29,8 @@ if __name__ == '__main__':
 
     print(len(doc1), len(doc2))
 
-    cmp = lambda t1, t2: t1.text == t2.text
-    C = get_LCS_array(doc1, doc2, cmp)
+    isEq = lambda t1, t2: t1.text == t2.text
+    C = get_LCS_array(doc1, doc2, isEq=isEq)
     print(C[len(doc2)][len(doc1)])
 
 

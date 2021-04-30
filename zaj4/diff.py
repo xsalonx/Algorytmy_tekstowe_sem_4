@@ -5,8 +5,8 @@ def mark_diffs(arr1, arr2, C=None):
     i = len(arr1)
     j = len(arr2)
 
-    arr1_s = [-1] * i
-    arr2_s = [-1] * j
+    d1 = [-1] * i
+    d2 = [-1] * j
 
     if C is None:
         C = get_LCS_array(arr1, arr2)
@@ -14,8 +14,8 @@ def mark_diffs(arr1, arr2, C=None):
 
     while i > 0 and j > 0:
         if arr1[i - 1] == arr2[j - 1]:
-            arr1_s[i - 1] = j - 1
-            arr2_s[j - 1] = i - 1
+            d1[i - 1] = j - 1
+            d2[j - 1] = i - 1
             i -= 1
             j -= 1
             LCS_len -= 1
@@ -25,9 +25,38 @@ def mark_diffs(arr1, arr2, C=None):
             else:
                 i -= 1
 
-    return arr1_s, arr2_s
+    return d1, d2
 
 
+def print_diffs(text1, text2):
+    T2 = text2.split('\n')
+    T1 = text1.split('\n')
+    print(len(T1), len(T2))
+    C = get_LCS_array(T1, T2)
+    print(C[-1][-1])
+
+    d1, d2 = mark_diffs(T1, T2)
+
+    i = 0
+    j = 0
+    k = 0
+    n1 = len(T1)
+    n2 = len(T2)
+    while i < n1 or j < n2:
+        while i < n1:
+            if d1[i] == -1:
+                k += 1
+                print(f"diff {k}; file 1; line {i}; <{T1[i]}>")
+                i += 1
+                break
+            i += 1
+        while j < n2:
+            if d2[j] == -1:
+                k += 1
+                print(f"diff {k}; file 2; line {j}; <{T2[j]}>")
+                j += 1
+                break
+            j += 1
 
 
 
@@ -41,12 +70,9 @@ if __name__ == '__main__':
     with open(dst2_path_for_src, "r") as file:
         text2 = file.read()
 
-    T2 = text2.split('\n')
-    T1 = text1.split('\n')
-    print(len(T1), len(T2))
-    C = get_LCS_array(T1, T2)
-    print(C[-1][-1])
+    print_diffs(text1, text2)
 
-    d1, d2 = mark_diffs(T1, T2)
-    print(d1)
-    print(d2)
+
+
+
+

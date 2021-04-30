@@ -1,9 +1,9 @@
 
 
-def get_LCS_array(arr1, arr2, cmp=None):
+def get_LCS_array(arr1, arr2, isEq=None):
 
-    if cmp is None:
-        cmp = lambda x, y: x == y
+    if isEq is None:
+        isEq = lambda x, y: x == y
     n1 = len(arr1)
     n2 = len(arr2)
     C = [[0] * (n1 + 1) for _ in range(n2 + 1)]
@@ -12,19 +12,19 @@ def get_LCS_array(arr1, arr2, cmp=None):
     for j in range(1, n2 + 1):
         for i in range(1, n1 + 1):
 
-            if cmp(arr1[i - 1], arr2[j - 1]):
+            if isEq(arr1[i - 1], arr2[j - 1]):
                 C[j][i] = C[j - 1][i - 1] + 1
             else:
                 C[j][i] = max(C[j - 1][i], C[j][i - 1])
 
     return C
 
-def cmpLCSs(s1, s2, cmp=None):
-    if cmp is None:
-        cmp = lambda x, y: x == y
+def cmpLCSs(s1, s2, isEq=None):
+    if isEq is None:
+        isEq = lambda x, y: x == y
     n = len(s1)
     for i in range(0, n):
-        if not cmp(s1[i], s2[i]):
+        if not isEq(s1[i], s2[i]):
             return False
     return True
 
