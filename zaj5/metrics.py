@@ -1,6 +1,6 @@
 import numpy as np
 from collections import defaultdict
-
+from LCS import *
 
 def make_freq_letters_vectors_from_text(s1: str, s2: str):
     A = list(set(s1) | set(s2))
@@ -29,27 +29,12 @@ def make_nGram_freq_vectors(s1, s2, n):
     return v1, v2, nGrams
 
 
-def lcs_len(str1, str2):
-    n1 = len(str1)
-    n2 = len(str2)
-
-    D = [[0 for _ in range(0, n1 + 1)] for __ in range(0, n2 + 1)]
-
-    maxLen = 0
-    for i in range(1, n1 + 1):
-        for j in range(0, n2 + 1):
-
-            if str1[i - 1] == str2[j - 1]:
-                D[j][i] = D[j - 1][i - 1] + 1
-                maxLen = max(maxLen, D[j][i])
-
-    return maxLen
 
 
 # lcs metric
 
 def lcs_distance(s1, s2):
-    return 1 - lcs_len(s1, s2) / max(len(s1), len(s2))
+    return 1 - lcs_len1(s1, s2) / max(len(s1), len(s2))
 
 
 # DICE metric
