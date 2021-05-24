@@ -49,18 +49,18 @@ def printTrie(node: TrieNode, level=0):
         printTrie(node.children[a], level + 1)
 
 
-# if __name__ == '__main__':
-#     texts = ['bbbd', 'aabbabd', 'ababcd', 'abcbccd', 'ababababd']
-#     actFile = open('1997_714.txt', encoding='UTF-8')
-#     actText = actFile.read(300) + '$'
-#
-#     text = actText
-#     sT = Trie(text)
-#
-#     printTrie(sT.root)
-#     print(sT.getSize())
-#     for i in range(len(text) - 1):
-#         for j in range(i, len(text)):
-#             pattern = text[i:j]
-#             if not sT.search(pattern):
-#                 exit(1)
+if __name__ == '__main__':
+    texts = ['bbbd', 'aabbabd', 'ababcd', 'abcbccd', 'ababababd']
+    actFile = open('1997_714.txt', encoding='UTF-8')
+    actText = actFile.read(300) + '$'
+
+    text = actText
+    sT = Trie(text)
+
+    printTrie(sT.root)
+    print(sT.getSize())
+    for i in range(len(text) - 1):
+        for j in range(i, len(text)):
+            pattern = text[i:j]
+            if not sT.search(pattern):
+                exit(1)

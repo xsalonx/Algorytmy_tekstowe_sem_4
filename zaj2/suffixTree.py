@@ -107,20 +107,20 @@ def printTrie(node: SuffixTreeNode):
         printTrie(node.children[a][1])
 
 
-# if __name__ == '__main__':
-#     texts = ['bbbd', 'aabbabd', 'ababcd', 'abcbccd', 'ababababd']
-#     actFile = open('1997_714.txt', encoding='UTF-8')
-#     actText = actFile.read(300) + '$'
-#
-#     text = texts[1]
-#     sT = SuffixTree(text)
-#
-#     printTrie(sT.root)
-#     print(sT.getSize())
-#     for i in range(len(text) - 1):
-#         for j in range(i+1, len(text)):
-#             pattern = text[i:j]
-#             res = sT.search(pattern)
-#             print(pattern, res)
-#             if not res:
-#                 exit(1)
+if __name__ == '__main__':
+    texts = ['bbbd', 'aabbabd', 'ababcd', 'abcbccd', 'ababababd']
+    actFile = open('1997_714.txt', encoding='UTF-8')
+    actText = actFile.read(300) + '$'
+
+    text = texts[1]
+    sT = SuffixTree(text)
+
+    printTrie(sT.root)
+    print(sT.getSize())
+    for i in range(len(text) - 1):
+        for j in range(i+1, len(text)):
+            pattern = text[i:j]
+            res = sT.search(pattern)
+            print(pattern, res)
+            if not res:
+                exit(1)

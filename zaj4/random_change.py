@@ -26,11 +26,11 @@ def random_changes_in_file(dst1_path, dst2_path_for_src, src_path):
 
     with open(dst1_path, "w+") as file:
         for i in range(len(T)):
-            file.write(T[i].text + " ")
+            file.write(T[i].html + " ")
 
     with open(dst2_path_for_src, "w+") as file:
         for i in range(len(doc)):
-            file.write(doc[i].text + " ")
+            file.write(doc[i].html + " ")
 
 
 if __name__ == '__main__':

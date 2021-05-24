@@ -1,6 +1,6 @@
 
 import random
-from Tekstowe.zaj2 import trie, suffixTree
+from Algorytmy_Tekstowe_sem_4.zaj2 import trie, suffixTree
 from time import time_ns
 from matplotlib import pyplot as plt
 import numpy as np

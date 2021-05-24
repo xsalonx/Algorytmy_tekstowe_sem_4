@@ -1,10 +1,7 @@
 from typing import List
 
-
-def get_max_prefix_len(L: List[str]):
-
+def get_common_prefix_len(L: List[str]):
     k = len(L)
-
     i = 0
     while True:
         j = 1
@@ -18,36 +15,34 @@ def get_max_prefix_len(L: List[str]):
     return i
 
 
-def lcs_len_2(str1: str, str2: str, sentinel1=chr(1005), sentinel2=chr(1020)):
+# with window
+def lcs_len_window(str1: str, str2: str, sentinel1=chr(1005), sentinel2=chr(1020)):
+    # concatenation of strings
     Str = str1 + sentinel1 + str2 + sentinel2
     n1 = len(str1)
     n2 = len(str2)
     n = n1 + n2 + 2
 
-    SuffArr__ = [(Str[i:], 0) for i in range(len(str1))] + [(Str[i:], 1) for i in range(len(str1) + 1, len(Str)-1)]
+    # suffix array creation and sorting
+    SuffArr__ = [(Str[i:], 0) for i in range(n1)] + [(Str[i:], 1) for i in range(n1 + 1, n - 1)]
     SuffArr__.sort()
     SuffArr = [l for l, _ in SuffArr__]
     SuffTypes = [t for _, t in SuffArr__]
 
-
     i = 0
     j = 1
+    #array of number of suffixes types present in window
     nums = [0, 0]
     nums[SuffTypes[i]] += 1
     nums[SuffTypes[j]] += 1
-    Prefs = set()
     maxLen = 0
 
     N = len(SuffTypes)
     while i < N - 1:
-        if nums[0]*nums[1] > 0:
-            length, pref = get_max_prefix_len(SuffArr[i:j+1])
+        if nums[0] * nums[1] > 0:
+            length = get_common_prefix_len(SuffArr[i:j + 1])
             if maxLen < length:
                 maxLen = length
-                Prefs.clear()
-                Prefs.add(pref)
-            elif maxLen == length:
-                Prefs.add(pref)
 
             nums[SuffTypes[i]] -= 1
             i += 1
@@ -55,12 +50,14 @@ def lcs_len_2(str1: str, str2: str, sentinel1=chr(1005), sentinel2=chr(1020)):
         elif j < N - 1:
             j += 1
             nums[SuffTypes[j]] += 1
+        else:
+            return maxLen
 
     return maxLen
 
 
-
-def lcs_len1(str1, str2):
+# dynamic
+def lcs_len_dynamic(str1, str2):
     n1 = len(str1)
     n2 = len(str2)
 
@@ -90,13 +87,8 @@ def lcs_len1(str1, str2):
 
 
 
-
-
-
-
-
+###############################################
 def get_max_prefix(L: List[str]):
-
     k = len(L)
 
     i = 0
@@ -118,11 +110,10 @@ def find_LCS(str1: str, str2: str, sentinel1=chr(1005), sentinel2=chr(1020)):
     n2 = len(str2)
     n = n1 + n2 + 2
 
-    SuffArr__ = [(Str[i:], 0) for i in range(len(str1))] + [(Str[i:], 1) for i in range(len(str1) + 1, len(Str)-1)]
+    SuffArr__ = [(Str[i:], 0) for i in range(len(str1))] + [(Str[i:], 1) for i in range(len(str1) + 1, len(Str) - 1)]
     SuffArr__.sort()
     SuffArr = [l for l, _ in SuffArr__]
     SuffTypes = [t for _, t in SuffArr__]
-
 
     i = 0
     j = 1
@@ -134,8 +125,8 @@ def find_LCS(str1: str, str2: str, sentinel1=chr(1005), sentinel2=chr(1020)):
 
     N = len(SuffTypes)
     while i < N - 1:
-        if nums[0]*nums[1] > 0:
-            length, pref = get_max_prefix(SuffArr[i:j+1])
+        if nums[0] * nums[1] > 0:
+            length, pref = get_max_prefix(SuffArr[i:j + 1])
             if maxLen < length:
                 maxLen = length
                 Prefs.clear()

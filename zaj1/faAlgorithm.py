@@ -1,7 +1,6 @@
 # import re
 
 
-
 def finiteAuto_StringMatching(text, pattern=None, delta=None):
     if pattern is None and delta is None:
         raise ValueError
@@ -14,8 +13,9 @@ def finiteAuto_StringMatching(text, pattern=None, delta=None):
     for i in range(n):
         q = delta[q].get(text[i], 0)
         if q == m - 1:
-            correctShifts.append(i+1-q)
+            correctShifts.append(i + 1 - q)
     return correctShifts
+
 
 def isPatternSuffixOf(patttern, text):
     k = len(patttern)
@@ -24,6 +24,7 @@ def isPatternSuffixOf(patttern, text):
         return False
     else:
         return patttern == text[m - k:]
+
 
 def constructTransMatrix(pattern):
     delta = []
@@ -38,16 +39,8 @@ def constructTransMatrix(pattern):
             delta[q][a] = k
     return delta
 
+
 if __name__ == '__main__':
     text = 'abbabbabbacafdjbfsfbjsfbsjfbsjdabbaaaabba'
     pattern = 'abba'
     print(finiteAuto_StringMatching(text, pattern))
-
-    pass
-
-
-
-
-
-
-
