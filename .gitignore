@@ -1,3 +1,4 @@
 .idea
 venv
 zaj*/__pycache__
+/zaj6/data/

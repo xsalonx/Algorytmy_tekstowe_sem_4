@@ -126,7 +126,7 @@ def times(text, pattern, without_fintieAuto=False):
     t4 = getTime_ms()
     pi = prefix_function(pattern)
     t5 = getTime_ms()
-    res3 = kmp_string_matching(text, pattern=pattern, pi=pi)
+    res3 = kmp_string_matching(text, pattern=pattern, Pi=pi)
     t6 = getTime_ms()
 
     print(len(res1), len(res2), len(res3))
