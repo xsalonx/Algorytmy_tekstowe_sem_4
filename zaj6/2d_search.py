@@ -37,15 +37,6 @@ def search_2d_image_pattern(im_path, pattern_path, FIRST_CHAR=48):
     image = np.array(Image.open(im_path).convert('L'))
     pattern_im = np.array(Image.open(pattern_path).convert('L'))
 
-    # deg = 100
-    #
-    # d = image < deg
-    # image[d] = 0
-    # image[np.logical_not(d)] = 255
-    # d = pattern_im < deg
-    # pattern_im[d] = 0
-    # pattern_im[np.logical_not(d)] = 255
-
     image_text = "\n".join(["".join([chr(image[j, i] + FIRST_CHAR) for i in range(image.shape[1])]) for j in range(image.shape[0])])
     pattern_text = ["\n".join(["".join([chr(pattern_im[j, i] + FIRST_CHAR) for i in range(pattern_im.shape[1])]) for j in range(pattern_im.shape[0])])]
 
